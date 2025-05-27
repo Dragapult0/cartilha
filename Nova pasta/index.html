@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Aniversário!</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffe0e9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #d6336c;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .message {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .photos {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .photos img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid #d6336c;
+      box-shadow: 0 0 15px rgba(214, 51, 108, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .photos img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Confetes e corações */
+    .confetti, .heart {
+      position: fixed;
+      bottom: 0;
+      width: 15px;
+      height: 15px;
+      opacity: 0.9;
+      pointer-events: none;
+      animation-timing-function: linear;
+      user-select: none;
+    }
+
+    .confetti {
+      background-color: #d6336c;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      animation-name: floatUp;
+      animation-duration: 6s;
+    }
+
+    .heart {
+      background-color: #ff5a7a;
+      clip-path: polygon(50% 15%, 61% 7%, 75% 10%, 82% 24%, 82% 38%, 75% 52%, 60% 65%, 50% 78%, 40% 65%, 25% 52%, 18% 38%, 18% 24%, 25% 10%, 39% 7%);
+      animation-name: floatUp;
+      animation-duration: 7s;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Feliz Aniversário!</h1>
+  <div class="message">
+    Que seu dia seja cheio de alegria, amor e momentos inesquecíveis! 🎉🎂  
+    Que todos os seus sonhos se realizem. Parabéns!
+  </div>
+  
+  <div class="photos">
+    <img src="foto1.jpg" alt="Foto 1" />
+    <img src="foto2.jpg" alt="Foto 2" />
+  </div>
+
+  <script>
+    // Função para criar confetes e corações na tela
+    function criarParticula(tipo) {
+      const particula = document.createElement('div');
+      particula.classList.add(tipo);
+      particula.style.left = Math.random() * window.innerWidth + 'px';
+      particula.style.animationDuration = (5 + Math.random() * 3) + 's';
+      particula.style.width = (10 + Math.random() * 10) + 'px';
+      particula.style.height = particula.style.width;
+      document.body.appendChild(particula);
+
+      // Remove o elemento depois da animação
+      particula.addEventListener('animationend', () => {
+        particula.remove();
+      });
+    }
+
+    // Criar partículas a cada 300ms
+    setInterval(() => {
+      const tipo = Math.random() > 0.5 ? 'confetti' : 'heart';
+      criarParticula(tipo);
+    }, 300);
+  </script>
+</body>
+</html>
